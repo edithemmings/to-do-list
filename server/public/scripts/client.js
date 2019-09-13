@@ -8,31 +8,59 @@ function onReady() {
 
 //GET request
 function getTasks(){
-    console.log( ' in get request')
     //ajax get request
     $.ajax({
         type: 'GET',
         url: '/tasks'
     }).then(function (response) {
         console.log(response)
+        refreshDom(response);
     }).catch( function (error) {
         console.log('ERROR in client side get request:', error)
     });
 }
 
+function refreshDom(arr){
+    console.log('dom refresh')
+    $('#todolist').empty();
+    $('#donelist').empty();
+    for (i in arr) {
+        // if task is marked as NOT done, append to the to do list
+        if (!arr[i].done) { 
+            $('#todolist').append(`
+                <li data-id="${arr[i].id}">
+                    ${arr[i].content}
+                    <button class="completeBtn">Complete</button>
+                    <button class="deleteBtn">Delete</button>
+                </li>
+            `)
+            // still need to add/remove class to mark done
+        }
+        // if task IS done, append it to done list
+        else if (arr[i].done) { 
+            $('#donelist').append(`<li data-id="${arr[i].id}">${arr[i].content}</li>`)
+        } else {
+            console.log('ERROR! Cannot figure out whether task is done')
+        }
+    }
+    $('#myInput').val('')
+}
+
 function handleSubmit(){
-    console.log('submit');
     // grabs input and assigns it to variable
     let newTask = $('#taskIn').val();
     // call my get request to server
-    addTask(newTask);
-    // clear out the input field after submission
-    $('#taskIn').val('');
+    if (newTask){
+        addTask(newTask);
+        // clears out input field
+        $('#taskIn').val('');
+    } else {
+        alert ('Input is empty')
+    }
 }
 
 // make a POST request to server
 function addTask( taskToAdd ){
-    console.log( taskToAdd )
     //ajax post request
     $.ajax({
         type: 'POST',
