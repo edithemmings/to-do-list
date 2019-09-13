@@ -2,9 +2,9 @@
 ## To Do List
 
 ###  Dependencies:
-body-parser
-express
-pg
-jquery
+..* body-parser
+..* express
+..* pg
+..* jquery
 
 ### see database.sql for databse instructions

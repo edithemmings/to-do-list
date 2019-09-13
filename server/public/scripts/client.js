@@ -37,7 +37,7 @@ function addTask( taskToAdd ){
     $.ajax({
         type: 'POST',
         url: '/tasks',
-        data: taskToAdd
+        data: {content: taskToAdd}
     }).then(function (response) {
         console.log('back from the server with:', response);
         getTasks();
