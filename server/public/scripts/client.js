@@ -10,6 +10,14 @@ function onReady() {
 function getTasks(){
     console.log( ' in get request')
     //ajax get request
+    $.ajax({
+        type: 'GET',
+        url: '/tasks'
+    }).then(function (response) {
+        console.log(response)
+    }).catch( function (error) {
+        console.log('ERROR in client side get request:', error)
+    });
 }
 
 function handleSubmit(){
@@ -26,6 +34,16 @@ function handleSubmit(){
 function addTask( taskToAdd ){
     console.log( taskToAdd )
     //ajax post request
+    $.ajax({
+        type: 'POST',
+        url: '/tasks',
+        data: taskToAdd
+    }).then(function (response) {
+        console.log('back from the server with:', response);
+        getTasks();
+    }).catch ( function (error) {
+        console.log('error in the POST request', error)
+    })
 }
 
 
