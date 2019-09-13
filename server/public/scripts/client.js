@@ -38,11 +38,17 @@ function refreshDom(arr){
         }
         // if task IS done, append it to done list
         else if (arr[i].done) { 
-            $('#donelist').append(`<li data-id="${arr[i].id}">${arr[i].content}</li>`)
+            $('#donelist').append(`
+                <li data-id="${arr[i].id}">
+                    ${arr[i].content}
+                    <button class="deleteBtn">Delete</button>
+                </li>`)
         } else {
             console.log('ERROR! Cannot figure out whether task is done')
         }
-    }
+    }// for
+    $('.completeBtn').on('click', completeTask)
+    $('.deleteBtn').on('click', deleteTask)
     $('#myInput').val('')
 }
 
@@ -74,7 +80,30 @@ function addTask( taskToAdd ){
     })
 }
 
+//DELETE REQUEST
+function deleteTask(){
+    let taskId = $(this).parent().data('id');
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then(function (response) {
+        console.log(response)
+        getTasks();
+    })
+}
 
+// PUT REQUEST
+function completeTask(){
+    let taskId = $(this).parent().data('id');
+    console.log(taskId)
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${taskId}`
+    }).then(function (response) {
+        console.log(response)
+        getTasks();
+    })
+}
 
 
 

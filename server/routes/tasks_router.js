@@ -31,6 +31,31 @@ router.post('/', (req, res) => {
         })
 })// end post routing
 
+router.delete('/:id', (req, res) => {
+    console.log('deletes are talking! & sent back', req.params.id)
+    let queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id])
+        .then((result) => {
+            console.log("DELETE result", result);
+            res.sendStatus(201);
+        }).catch((error) => {
+            console.log('error making query', error);
+            res.sendStatus(500)
+        })
+})
+
+router.put('/:id', (req, res) => {
+    console.log('puts are talking! & sent back', req.params.id)
+    let queryText = `UPDATE "tasks" SET "done" = $1 WHERE "id" = $2;`;
+    pool.query(queryText, [true, req.params.id])
+        .then((result) => {
+            console.log("DELETE result", result);
+            res.sendStatus(201);
+        }).catch((error) => {
+            console.log('error making query', error);
+            res.sendStatus(500)
+        })
+})// END PUT ROUTE
 
 
 module.exports = router;
