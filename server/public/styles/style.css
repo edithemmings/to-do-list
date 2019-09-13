@@ -1,0 +1,76 @@
+html {
+  margin: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(225deg, #293033, #14664a);
+
+}
+
+.completedTask{
+    text-decoration: line-through;
+}
+
+/* defining the background "cards" for todo and done lists */
+.card, #completed {
+  background-color: #e6f2ee;
+  box-shadow: 0 4px 8px 0 #293033, 0 6px 20px 0 #293033;
+  margin: 36px auto 36px auto;
+  padding: 30px;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+
+h1 {
+  font-family: 'Berkshire Swash', cursive;
+  color: #293033;
+  padding: 26px 0 0 36px;
+  margin: 0;
+  font-size: 45px;
+}
+
+h2 {
+  font-family: 'Berkshire Swash', cursive;
+  color: #293033;
+  padding: 26px 0 0 36px;
+  margin: 0;
+  font-size: 40px;
+}
+
+ul{
+  margin: 20px;
+  padding: 0;
+  list-style-type: circle;
+}
+
+li {
+  color: #293033;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.todolist li {
+  cursor: pointer;
+}
+
+.myInput{
+  font-family: 'Roboto', sans-serif;
+  color: #293033;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+}
+
+p {
+  color: #293033;
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid #293033;
+  border-radius: 10px;
+  margin: 36px auto 36px auto;
+  max-width: 250px;
+  cursor: pointer;
+}

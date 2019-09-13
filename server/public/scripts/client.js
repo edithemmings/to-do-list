@@ -39,7 +39,7 @@ function refreshDom(arr){
         // if task IS done, append it to done list
         else if (arr[i].done) { 
             $('#donelist').append(`
-                <li data-id="${arr[i].id}">
+                <li data-id="${arr[i].id}" class = "completedTask">
                     ${arr[i].content}
                     <button class="deleteBtn">Delete</button>
                 </li>`)
