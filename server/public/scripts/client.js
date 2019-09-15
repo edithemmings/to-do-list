@@ -2,7 +2,6 @@ $('document').ready(onReady);
 
 function onReady() {
     $('#submitBtn').on('click', handleSubmit)
-    $('#clearAllBtn').on('click', handleClearAll)
     getTasks();
 }
 
@@ -29,9 +28,9 @@ function refreshDom(arr){
         if (!arr[i].done) { 
             $('#todolist').append(`
                 <li data-id="${arr[i].id}">
+                    <button class="completeBtn btn btn-outline-success">✔</button>
                     ${arr[i].content}
-                    <button class="completeBtn">Complete</button>
-                    <button class="deleteBtn">Delete</button>
+                    <button class="deleteBtn btn btn-outline-danger">✖</button>
                 </li>
             `)
             // still need to add/remove class to mark done
@@ -41,15 +40,36 @@ function refreshDom(arr){
             $('#donelist').append(`
                 <li data-id="${arr[i].id}" class = "completedTask">
                     ${arr[i].content}
-                    <button class="deleteBtn">Delete</button>
+                    <button class="deleteBtn btn btn-outline-danger">✖</button>
                 </li>`)
         } else {
             console.log('ERROR! Cannot figure out whether task is done')
         }
     }// for
     $('.completeBtn').on('click', completeTask)
-    $('.deleteBtn').on('click', deleteTask)
+    $('.deleteBtn').on('click', areYouSure)
     $('#myInput').val('')
+}
+
+function areYouSure(){
+    let taskId = $(this).parent().data('id');
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this task!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            swal("Poof! Your task has been deleted!", {
+                icon: "success",
+            });
+            deleteTask(taskId)
+        } else {
+            swal("Your task is safe!");
+        }
+    });
 }
 
 function handleSubmit(){
@@ -81,8 +101,7 @@ function addTask( taskToAdd ){
 }
 
 //DELETE REQUEST
-function deleteTask(){
-    let taskId = $(this).parent().data('id');
+function deleteTask(taskId){
     $.ajax({
         type: 'DELETE',
         url: `/tasks/${taskId}`
@@ -103,13 +122,4 @@ function completeTask(){
         console.log(response)
         getTasks();
     })
-}
-
-
-
-
-
-// DELETE REQUEST
-function handleClearAll(){
-    console.log('clear all');
 }
