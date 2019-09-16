@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 
 // variables
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 //imports
 let tasksRouter = require('./routes/tasks_router')
