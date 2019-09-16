@@ -1,4 +1,4 @@
--- NAME YOUR DATABASE: to_do_list
+-- NAME YOUR DATABASE: weekend-to-do-app
 
 CREATE TABLE "tasks" (
 "id" serial primary key,
