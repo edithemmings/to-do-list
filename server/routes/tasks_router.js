@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // get routing
 router.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "tasks";`;
+    let queryText = `SELECT * FROM "tasks" ORDER BY "id" DESC;`;
     pool.query(queryText)
     .then((result) => {
         console.log("GET query worked:", result.rows);
