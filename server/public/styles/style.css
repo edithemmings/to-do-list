@@ -12,7 +12,7 @@ body {
 
 .completedTask{
     text-decoration: line-through;
-    background-color: #768c6e;
+    /* background-color: #768c6e; */
 }
 
 /* defining the background "cards" for todo and done lists */

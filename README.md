@@ -1,10 +1,19 @@
-# Baby's first CRUD!
-## To Do List
+# To Do List
+
+Deployment: 
+
+![Preview](images/preview.png)
+
+
 
 ###  Dependencies:
-..* body-parser
-..* express
-..* pg
-..* jquery
 
-### see database.sql for databse instructions
+body-parser
+
+express
+
+pg
+
+
+
+see database.sql for databse setup instructions
